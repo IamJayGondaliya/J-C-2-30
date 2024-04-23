@@ -72,9 +72,9 @@ float getPi() {
 	return 3.14;
 }
 
-int getInt() {
+int getInt(char varName[]) {
 	int n;
-	printf("Enter value: ");
+	printf("Enter %s: ",varName);
 	scanf("%d",&n);
 	return n;
 }
@@ -91,10 +91,82 @@ int getMaxFrom3(int a, int b, int c) {
 						: c;
 }
 
+int getArrayElement(char arrayName[],int index) {
+	int n;
+	printf("Enter %s[%d]: ",arrayName,index);
+	scanf("%d",&n);
+	return n;
+}
 
+// Passing array in UDF
+void arrayInput(int a[],int n) {	
+	int i;
+	
+	for(i=0; i<n; i++) {
+		a[i] = getArrayElement("a",i);
+	}	
+}
 
+void displayArray(int a[],int n) {	
+	int i;
+	printf("Array elements: ");
+	for(i=0; i<n; i++) {
+		printf("%d ",a[i]);
+	}
+	printf("\n");
+}
 
+int getArraySum(int a[],int n) {
+	int sum = 0, i;		
+	for(i=0; i<n; i++) {
+		sum += a[i];
+	}	
+	return sum;
+}
 
+// Nested functions
+int getArrayAverage(int a[],int n) {	
+	int avg = getArraySum(a,n) / n;
+		
+	return avg;	
+}
+
+/*
+	Recursion:
+		- Function calls itself.
+		- It must be used with specific condition.
+*/
+
+void loop(int start, int end) {	// 3	10
+	
+	printf("%d\n",start);	//	1 2, .. 10
+	start++;	// 11
+	
+	if(start <= end) {	// 11<=10 X
+		loop(start,end);	// loop(3,10)
+	}
+}
+
+// N sum
+/*
+	5	=>	5 + 4
+	4	=>	4 + 3
+	1	=>	1
+*/
+
+int getNsum(int n) {	// 5, 4, 3, 2, 1
+	if(n<=1) {	// 5<=1, 4<=1, 3<=1, 2<=1, 1<=1
+		return 1;
+	}
+	else {
+		return n + getNsum(n-1);
+		//	   5 + getNsum(4)				=>	5 + 10	=> 15
+		//		   4 + getNsun(3)			=>	4 + 6	=> 10
+		//			   3 + getNsum(2)		=> 	3 + 3	=> 6
+		//				   2 + getNsum(1)	=>	2 + 1	=> 3
+		//					   1
+	}
+}
 
 
 
