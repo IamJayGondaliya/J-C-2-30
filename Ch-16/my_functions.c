@@ -168,7 +168,17 @@ int getNsum(int n) {	// 5, 4, 3, 2, 1
 	}
 }
 
-
+// Pointer in UDF
+void swap(int *a,int *b) {
+	
+	*a = *a + *b;
+	*b = *a - *b;
+	*a = *a - *b;	
+	
+	printf("Inside swap\n");
+	printf("a: %d\nb: %d\n",*a,*b);
+	
+}
 
 
 
